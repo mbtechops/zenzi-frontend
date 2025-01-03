@@ -4,7 +4,7 @@
   "description": "A sample Stripe implementation",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/server.js"
   },
   "author": "stripe-samples",
   "license": "ISC",
