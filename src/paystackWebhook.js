@@ -29,22 +29,22 @@ module.exports = (req, res) => {
     .update(JSON.stringify(req.body))
     .digest("hex");
 
-  // Validate the signature
+  // to validate the signature
   if (hash !== signature) {
-    console.log("Invalid signature, possible tampering detected");
+    console.log("Invalid signature!");
     return res.status(401).send("Invalid signature");
   }
 
   const event = req.body;
-  console.log("Paystack webhook event:", event);
 
   switch (event.event) {
     case "transfer.success":
       console.log("Payment successful:", event.data);
 
-      checkBalance();
-
+      checkBalance() // call the smart contract
+          .then(r => console.log(r));
       break;
+
     case "transfer.failed":
       console.log("Payment failed:", event.data);
       break;
@@ -57,4 +57,4 @@ module.exports = (req, res) => {
 };
 
 
-// start the project, use ngrok hhttp 4242 to setup ngrok, open localhost:4040 on browser to inspect the webhook
+// start the project, use ngrok http 4242 to setup ngrok, open localhost:4040 on browser to inspect the webhook

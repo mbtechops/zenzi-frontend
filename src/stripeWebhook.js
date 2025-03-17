@@ -7,9 +7,12 @@ const stripe = require("stripe")(STRIPE_SECRET_KEY);
 // If you are testing with the CLI, find the secret by running 'stripe listen'
 // If you are using an endpoint defined with the API or dashboard, look in your webhook settings
 // at https://dashboard.stripe.com/webhooks
-const endpointSecret = STRIPE_ENDPOINT_SECRET; //todo: This will be replaced by endpoint secret key from stripe dashboard
+const endpointSecret = STRIPE_ENDPOINT_SECRET;
 const express = require("express");
-// const app = express();
+const app = express();
+
+// const bodyParser = require("body-parser"); // Might be needed
+// app.use(bodyParser.json());
 
 const { allocateToken, depositToken } = require("./contractCall");
 
@@ -63,7 +66,8 @@ module.exports =  (request, response) => {
           status: chargeSuccess.status,
         };
 
-        allocateToken(chargeSuccess.amount);
+        allocateToken(chargeSuccess.amount)
+            .then(r => console.log(r));
 
         // console.log("Event Object: ", eventObject);
         // Then define and call a method to handle the successful payment intent.
