@@ -17,5 +17,8 @@
     "starknet": "^6.11.0",
     "starknetkit": "^2.6.1",
     "stripe": "^13.0.0"
+  },
+  "engines": {
+    "node": "20.16.0"
   }
 }
