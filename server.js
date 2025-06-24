@@ -111,12 +111,14 @@
 //     response.send();
 //   }
 // );
+
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
-const stripeWebhook = require("./stripeWebhook");
-const paystackWebhook = require("./paystackWebhook");
+const stripeWebhook = require("./src/stripeWebhook");
+const paystackWebhook = require("./src/paystackWebhook");
 
 app.use(bodyParser.json());
 
