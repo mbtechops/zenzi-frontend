@@ -7,10 +7,6 @@ require("dotenv").config();
 const { SEPOLIA_URL, CONTRACT_ADDRESS, ACCOUNT_ADDRESS, PRIVATE_KEY } =
   process.env;
 
-// const sepoliaUrl = process.env.SEPOLIA_URL;
-// const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
-// const ACCOUNT_ADDRESS = process.env.ACCOUNT_ADDRESS;
-// const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const PROVIDER = new RpcProvider({
   nodeUrl: SEPOLIA_URL,
@@ -41,33 +37,6 @@ const hex_it = (tx) => {
   return "0x" + tx.toString(16);
 };
 
-// async function transferTo(amount) {
-//     console.log("Calling StarkNet contract to tranfer token...");
-
-//     const classDefinition = await PROVIDER.getClassAt(CONTRACT_ADDRESS); // Replace with your contract ABI
-//     const abi = classDefinition.abi;
-
-//     const account = new Account(PROVIDER, ACCOUNT_ADDRESS, PRIVATE_KEY);
-//     const callContract = new Contract(abi, CONTRACT_ADDRESS, account);
-
-//     try {
-
-//         const addr = "0x03fcbe78b720d74cb54642db76d64433b15b21b91172528be6cd4f8cf95998cb";
-
-//         const res = await callContract.transfer(addr, amount);
-
-//         const txHash = res?.transaction_hash;
-
-//         const txResult = await PROVIDER.waitForTransaction(txHash);
-
-//         console.log("Transaction successful: ", txResult.transaction_hash);
-
-//         checkBalance();
-
-//     } catch (error) {
-//         console.error("Error: " + error.message);
-//     }
-// }
 async function allocateToken(token_amount) {
   console.log("Calling StarkNet contract to allocate token...");
 
